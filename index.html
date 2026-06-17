@@ -2136,6 +2136,16 @@
 
         /* INITIAL CODE HYDRATION FOR INJECTION ON EXECUTOR LAUNCHES */
         executeGalleryHydrationFilter("all");
+
+        // Pengaman darurat: Jika dalam 3 detik preloader belum hilang, paksa hilangkan!
+setTimeout(() => {
+    const shield = document.getElementById("luxury-preloader");
+    if (shield && shield.style.visibility !== "hidden") {
+        shield.style.opacity = "0";
+        shield.style.visibility = "hidden";
+        console.log("Preloader dipaksa tutup karena ada delay/error JS.");
+    }
+}, 3000);
     </script>
 </body>
 </html>
